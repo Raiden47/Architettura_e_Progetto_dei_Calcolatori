@@ -29,3 +29,7 @@ static void med_range(void){
 static void min_range(void){
 	// To-Do beeping on minmum range
 }
+
+static void check_range(void){
+	// To-Do
+}
