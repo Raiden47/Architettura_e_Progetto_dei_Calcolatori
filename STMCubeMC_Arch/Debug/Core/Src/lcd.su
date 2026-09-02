@@ -1,0 +1,12 @@
+../Core/Src/lcd.c:23:13:LCD_Enable	8	static
+../Core/Src/lcd.c:31:13:LCD_Write4Bit	16	static
+../Core/Src/lcd.c:48:13:LCD_Write	16	static
+../Core/Src/lcd.c:60:6:LCD_Command	16	static
+../Core/Src/lcd.c:68:6:LCD_WriteChar	16	static
+../Core/Src/lcd.c:73:6:LCD_Print	16	static
+../Core/Src/lcd.c:82:6:LCD_Clear	8	static
+../Core/Src/lcd.c:87:6:LCD_SetCursor	24	static
+../Core/Src/lcd.c:99:6:LCD_Init	8	static
+../Core/Src/lcd.c:133:9:LCD_GetState	4	static
+../Core/Src/lcd.c:137:6:LCD_DisplayOn	8	static
+../Core/Src/lcd.c:142:6:LCD_DisplayOff	8	static

@@ -55,7 +55,7 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-
+extern TIM_HandleTypeDef htim2;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -197,6 +197,42 @@ void SysTick_Handler(void)
 /* For the available peripheral interrupt handler names,                      */
 /* please refer to the startup file (startup_stm32f3xx.s).                    */
 /******************************************************************************/
+
+/**
+  * @brief This function handles TIM2 global interrupt.
+  */
+
+
+volatile uint32_t debug_tim2_irq_count = 0;
+
+volatile uint32_t debug_tim2_sr_before = 0;
+volatile uint32_t debug_tim2_sr_after  = 0;
+volatile uint32_t debug_tim2_dier      = 0;
+volatile uint32_t debug_tim2_ccer      = 0;
+volatile uint32_t debug_tim2_ccmr1     = 0;
+volatile uint32_t debug_tim2_ccmr2     = 0;
+
+volatile uint32_t debug_cc4_irq_condition = 0;
+
+
+void TIM2_IRQHandler(void)
+{
+    debug_tim2_irq_count++;
+
+    debug_tim2_sr_before = TIM2->SR;
+    debug_tim2_dier      = TIM2->DIER;
+
+    debug_tim2_ccer  = TIM2->CCER;
+    debug_tim2_ccmr1 = TIM2->CCMR1;
+    debug_tim2_ccmr2 = TIM2->CCMR2;
+
+    if ((debug_tim2_sr_before & TIM_SR_CC4IF) && (debug_tim2_dier & TIM_DIER_CC4IE)){
+        debug_cc4_irq_condition = 1;
+    }
+    HAL_TIM_IRQHandler(&htim2);
+
+    debug_tim2_sr_after = TIM2->SR;
+}
 
 /* USER CODE BEGIN 1 */
 
