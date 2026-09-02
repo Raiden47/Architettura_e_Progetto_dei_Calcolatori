@@ -27,9 +27,10 @@
 #define ECHO_PORT GPIOA
 #define ECHO_PIN  GPIO_PIN_10
 
-#define MAX_RANGE 250
-#define MED_RANGE 100
-#define MIN_RANGE 25
+#define MAX_RANGE 400
+#define MED_RANGE 200
+#define MIN_RANGE 100
+#define STOP_RANGE 25
 
 extern TIM_HandleTypeDef htim1;
 extern TIM_HandleTypeDef htim2;

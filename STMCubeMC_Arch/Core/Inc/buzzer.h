@@ -23,9 +23,10 @@
 
 #define BUZZER_PORT GPIOC
 #define BUZZER_PIN  GPIO_PIN_7
+#define BUZZER_START 1000
 #define BUZZER_INTERVAL_SL 500
-#define BUFFER_INTERVAL_MD 250
-#define BUFFER_INTERVAL_HG 50
+#define BUZZER_INTERVAL_MD 250
+#define BUZZER_INTERVAL_HG 50
 
 void Buzzer_Init(void);
 void Buzzer_Start(uint32_t interval);

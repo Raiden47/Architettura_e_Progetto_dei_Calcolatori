@@ -144,6 +144,7 @@ int main(void)
 	          LCD_Print("Distanza:");
 	          LCD_SetCursor(1, 0);
 	          LCD_Print("Attesa...");
+	          Buzzer_Start(BUZZER_START);
 	      }
 	      HAL_Delay(50);
 	  }
@@ -162,27 +163,31 @@ int main(void)
 				  distance = new_distance;
 				  char buffer[17];
 				  LCD_Clear();
-				  if (distance > MAX_RANGE){
+				  if (distance < STOP_RANGE){
+					  Buzzer_SetInterval(BUZZER_INTERVAL_HG);
 					  LCD_SetCursor(0, 0);
-					  LCD_Print("Distanza:");
+					  LCD_Print("STOP!");
 					  LCD_SetCursor(1, 0);
 					  sprintf(buffer, "%3d cm  ", distance);
 					  LCD_Print(buffer);
-				  } else if (distance > MED_RANGE){
-					  LCD_SetCursor(0, 0);
-					  LCD_Print("Rallenta:");
-					  LCD_SetCursor(1, 0);
-					  sprintf(buffer, "%3d cm  ", distance);
-					  LCD_Print(buffer);
-				  } else if (distance > MIN_RANGE){
+				  }  else if (distance < MIN_RANGE){
+					  Buzzer_SetInterval(BUZZER_INTERVAL_MD);
 					  LCD_SetCursor(0, 0);
 					  LCD_Print("Attenzione:");
 					  LCD_SetCursor(1, 0);
 					  sprintf(buffer, "%3d cm  ", distance);
 					  LCD_Print(buffer);
-				  } else {
+				  } else if (distance < MED_RANGE){
+					  Buzzer_SetInterval(BUZZER_INTERVAL_SL);
 					  LCD_SetCursor(0, 0);
-					  LCD_Print("STOP!");
+					  LCD_Print("Rallenta:");
+					  LCD_SetCursor(1, 0);
+					  sprintf(buffer, "%3d cm  ", distance);
+					  LCD_Print(buffer);
+				  } else if (distance < MAX_RANGE){
+					  Buzzer_SetInterval(BUZZER_START);
+					  LCD_SetCursor(0, 0);
+					  LCD_Print("Distanza:");
 					  LCD_SetCursor(1, 0);
 					  sprintf(buffer, "%3d cm  ", distance);
 					  LCD_Print(buffer);

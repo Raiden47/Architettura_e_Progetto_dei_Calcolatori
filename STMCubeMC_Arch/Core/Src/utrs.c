@@ -70,10 +70,6 @@ void UTRS_Init(void)
 
     measuring_since = 0;
 
-
-    /*
-     * Debug
-     */
     debug_trigger_count = 0;
     debug_rising_count = 0;
     debug_falling_count = 0;
